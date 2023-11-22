@@ -22,65 +22,6 @@ const Contact = () => {
     </div>
   </div>
 </section>
-            {/* <div className="wrapper">
-                <div className="container mx-auto px-8">
-                    <h1>Contact</h1>
-                    <p>お気軽にご連絡ください</p>
-                    <form>
-                    <div class="relative">
-                    <input type="text" id="hs-floating-underline-input-email" class="peer py-4 px-0 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 dark:focus:border-b-gray-600
-                    focus:pt-6
-                    focus:pb-2
-                    [&:not(:placeholder-shown)]:pt-6
-                    [&:not(:placeholder-shown)]:pb-2
-                    autofill:pt-6
-                    autofill:pb-2" placeholder="you@email.com"/>
-                    <label for="hs-floating-underline-input-email" class="absolute top-0 start-0 py-4 px-0 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                        peer-focus:text-xs
-                        peer-focus:-translate-y-1.5
-                        peer-focus:text-gray-500
-                        peer-[:not(:placeholder-shown)]:text-xs
-                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                        peer-[:not(:placeholder-shown)]:text-gray-500">Name</label>
-                    </div>
-                    <div class="relative">
-                    <input type="email" id="hs-floating-underline-input-email" class="peer py-4 px-0 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 dark:focus:border-b-gray-600
-                    focus:pt-6
-                    focus:pb-2
-                    [&:not(:placeholder-shown)]:pt-6
-                    [&:not(:placeholder-shown)]:pb-2
-                    autofill:pt-6
-                    autofill:pb-2" placeholder="you@email.com"/>
-                    <label for="hs-floating-underline-input-email" class="absolute top-0 start-0 py-4 px-0 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                        peer-focus:text-xs
-                        peer-focus:-translate-y-1.5
-                        peer-focus:text-gray-500
-                        peer-[:not(:placeholder-shown)]:text-xs
-                        peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                        peer-[:not(:placeholder-shown)]:text-gray-500">Email</label>
-                    </div>
-                    <div class="relative">
-                        <textarea id="hs-floating-textarea-underline" class="peer py-4 px-0 block w-full bg-transparent border-t-transparent border-b-2 border-x-transparent border-b-gray-200 text-sm placeholder:text-transparent focus:border-blue-500 focus:border-t-transparent focus:border-x-transparent focus:border-b-blue-500 focus:ring-0 disabled:opacity-50 disabled:pointer-events-none dark:border-b-gray-700 dark:text-gray-400 dark:focus:ring-gray-600 dark:focus:border-b-gray-600
-                        focus:pt-6
-                        focus:pb-2
-                        [&:not(:placeholder-shown)]:pt-6
-                        [&:not(:placeholder-shown)]:pb-2
-                        autofill:pt-6
-                        autofill:pb-2" placeholder="This is a textarea placeholder"></textarea>
-                        <label for="hs-floating-textarea-underline" class="absolute top-0 start-0 py-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
-                            peer-focus:text-xs
-                            peer-focus:-translate-y-1.5
-                            peer-focus:text-gray-500
-                            peer-[:not(:placeholder-shown)]:text-xs
-                            peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                            peer-[:not(:placeholder-shown)]:text-gray-500">Comment</label>
-                    </div>
-                    <button type="button" class="w-full py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-4 p-4 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                        Button
-                    </button>
-                    </form> 
-                </div>
-            </div> */}
         </>
     )
 }

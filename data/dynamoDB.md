@@ -33,7 +33,7 @@ DynamoDBClientのみで頑張って書いても大丈夫ですが型定義など
 DocumentClientを使うとスッキリかけます。
 詳しくは公式サイトを確認してください。
 
-```JavaScript
+```javascript
 import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 

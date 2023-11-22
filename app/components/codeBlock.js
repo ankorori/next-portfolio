@@ -1,13 +1,20 @@
 import React from "react"
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
-import { dark } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
-const codeBlock = ({ language, value }) => {
-    console.log(language,value)
+const CodeBlock = ({ inline, className, children }) => {
+    if (inline) {
+        return <code className={className}>{children}</code>;
+    }
+    const match = /language-(\w+)/.exec(className || '');
+    const lang = match && match[1] ? match[1] : '';
     return (
-        <SyntaxHighlighter language={language} style={dark}>
-            {value}
-        </SyntaxHighlighter>
-    )
-}
-export default codeBlock
+        <SyntaxHighlighter
+            style={darcula}
+            language={lang}
+            children={String(children).replace(/\n$/, '')}
+        />
+    );
+};
+
+export default CodeBlock
