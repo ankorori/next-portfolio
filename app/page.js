@@ -1,44 +1,68 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import heroPic from "../public/images/index-hero.jpg"
-import profilePic from "../public/images/profile.jpg"
+import fs from "fs"       
+import path from "path" 
+import matter from "gray-matter"
 
-const Index = () => {
-  return (
-    <>
-        <div className="hero">
-            <Image src={heroPic} alt="hero" />
-            <div className="textContainer">
-                <h1>I'm takashi miyagawa!</h1>
-                <h3>web Developer</h3>
-            </div>
-        </div>
-        <div className="container mx-auto px-4">
-            <div className="profile">
-                <div>
-                    <h2>JavaScript Nerd</h2>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                </div>
-                <div>
-                    <Image src={profilePic} alt="hero" />
-                </div>
-            </div>
-            <div className="skills">
-                <h2>Skills</h2>
-                <div className="grid grid-cols-2 gap-4 place-content-center h-48">
-                    <div><img src="/images/aws-logo.png" alt="aws"/><span>aws / 1 years</span></div>
-                    <div><img src="/images/terraform.png" alt="terraform"/><span>terraform / 1 years</span></div>
-                    <div><img src="/images/gatsby.svg" alt="gatsby"/><span>Gatsby / 3 years</span></div>
-                    <div><img src="/images/next.svg" alt="next"/><span>Next.JS / 3 years</span></div>
-                    <div><img src="/images/react.svg"alt="react"/><span>React / 5 years</span></div>
-                </div>
-            </div>
-            <div className="ctaButton">
-                <Link href="/contact">Make It Happen!</Link>
-            </div>
-        </div>
-    </>
-  )
+async function getAllBlogs() {  
+    const files = fs.readdirSync(path.join("data"))
+    const blogs = files.map((fileName) => {
+        const slug = fileName.replace(".md", "")
+        const fileData = fs.readFileSync(
+            path.join("data", fileName),
+            "utf-8"
+        )
+        const { data } = matter(fileData) 
+        return {
+            frontmatter: data,
+            slug: slug, 
+        }
+    })
+
+    const orderedBlogs = blogs.sort((a, b) => {
+        return b.frontmatter.id - a.frontmatter.id
+    })
+
+    return{
+        blogs: orderedBlogs
+    }
 }
 
-export default Index
+export default async() => {
+    const { blogs } = await getAllBlogs()
+    return (
+        <>
+            <div className="container mx-auto px-8">
+                <h1>Blog</h1>
+                <p>インフラ〜バックエンドあたりの技術についてメモしています</p>
+                <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+                    <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
+                        { blogs.map((blog, index) =>
+                            <div key={index} className='shadow-2xl transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-600'>
+                            <Link className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={`/blog/${blog.slug}`}>
+                                <div className="sm:flex">
+                                    <div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
+                                        <Image className="w-auto h-auto absolute top-0 start-0 object-cover rounded-xl" src={blog.frontmatter.image} alt="Image Description" width={300} height={100} quality={90} priority={true} />
+                                    </div>
+                                    <div className="grow mt-4 sm:mt-0 sm:ms-6 px-4 sm:px-0">
+                                        <h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 dark:text-gray-300 dark:group-hover:text-white">
+                                            {blog.frontmatter.title}
+                                        </h3>
+                                        <p className="mt-3 text-gray-600 dark:text-gray-400">
+                                            {blog.frontmatter.date}
+                                        </p>
+                                        <p className="mt-4 inline-flex items-center gap-x-1 text-blue-600 decoration-2 hover:underline font-medium">
+                                            Read more
+                                            <svg className="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                                        </p>
+                                    </div>
+                                </div>
+                            </Link>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </>
+    )
+}

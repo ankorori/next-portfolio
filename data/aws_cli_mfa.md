@@ -1,0 +1,101 @@
+---
+id: 3
+title: "aws cliでMFA認証突破する方法"
+date: "2023-11-21"
+image: "/images/aws.png"
+excerpt: "aws cliでMFA認証突破する方法をまとめました"
+---
+
+無駄に手こずってしまったのでメモ
+個人使用のAWSアカウントなどではセキュリティはそこまで意識せずに使いがちですが
+企業様のものではそうはいきません。
+
+IAMユーザーを発行してもらい、認証情報やアクセスキーをもらう際にMFAが強制的に有効になっていることはあると思います。
+
+その場合、AWSコンソールへのアクセスは設定したMFAデバイスからコードを取得し入力するだけですが
+cliの場合どうするの？というところでちょっとハマってしまいました。
+
+## AWS cliでMFAコードの入力をする方法
+
+AWS cliで MFA を利用するときには、`aws sts get-session-token`コマンドで一時的なアクセスキーを取得できます。このコマンドを実行するために、MFA Device の ARN が必要です。
+
+MFA Device の ARNはIAMダッシュボードのユーザーから該当のユーザーを選択し、セキュリティ認証情報タブの多要素認証 (MFA)　から確認できます。
+
+![sc_iam_mfa.png](/images/sc_iam_mfa.png)
+
+下記は`aws sts get-session-token`のコマンド例です。
+認証の有効期限は`--duration-seconds` オプションに秒数指定で、任意の期限に設定できます。ただし指定できるのは15分から36時間の範囲です。
+
+```bash
+aws sts get-session-token --serial-number arn:aws:iam::<awsアカウントの番号>:<MFA Device のARN>  --duration-seconds 86400 --token-code 119596
+```
+
+実行が成功すると下記のようなレスポンスが返ってきます
+
+```json
+{
+    "Credentials": {
+        "SecretAccessKey": "secret-access-key",
+        "SessionToken": "temporary-session-token",
+        "Expiration": "expiration-date-time",
+        "AccessKeyId": "access-key-id"
+    }
+}
+```
+
+## 一時的な認証情報の使用方法
+
+### 環境変数にセットして使用する
+上記で返ってきた値を環境変数にセットして使用します。
+
+Linux:
+```bash
+export AWS_ACCESS_KEY_ID=<取得したSecretAccessKeyId>
+export AWS_SECRET_ACCESS_KEY=<取得したSecretAccessKey>
+export AWS_SESSION_TOKEN=<取得したSessionToken>
+```
+
+Windows:
+
+```bash
+set AWS_ACCESS_KEY_ID=<取得したSecretAccessKeyId>
+set AWS_SECRET_ACCESS_KEY=<取得したSecretAccessKey>
+set AWS_SESSION_TOKEN=<取得したSessionToken>
+```
+
+### 名前付きプロファイルで使用する
+名前付きプロファイルで使用することも出来ます。
+ユーザーのホームディレクトリの .awsフォルダにある認証情報ファイルを編集し下記のように設定します。
+
+```config
+[mfa]
+aws_access_key_id = <取得したSecretAccessKeyId>
+aws_secret_access_key = <取得したSecretAccessKey>
+aws_session_token = <取得したSessionToken>
+```
+
+## 余談
+IAMユーザーにMFAを強制するポリシー
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "AllDenyWithoutMFA",
+            "Effect": "Deny",
+            "Action": [
+                "*"
+            ],
+            "Resource": [
+                "*"
+            ],
+            "Condition": {
+                "BoolIfExists": {
+                    "aws:MultiFactorAuthPresent": false
+                }
+            }
+        }
+    ]
+}
+```

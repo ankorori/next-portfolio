@@ -4,7 +4,7 @@ import Footer from "./components/footer"
 
 const RootLayout = ({ children }) => {
     return (
-        <html lang="en">
+        <html lang="jp">
             <body>
                 <Header />
                 <main>{children}</main>

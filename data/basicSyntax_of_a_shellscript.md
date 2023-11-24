@@ -1,9 +1,9 @@
 ---
-id: 1
+id: 6
 title: "シェルスクリプトの基本構文とかをまとめてみた"
 date: "2023-11-21"
-image: "/images/pic1.jpg"
-excerpt: "bbbbbb"
+image: "/images/linux.png"
+excerpt: "シェルスクリプトの基本構文などをまとめました"
 ---
 
 シェルスクリプトを書く機会があり、色々調べたのでメモとして残します。

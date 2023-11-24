@@ -2,7 +2,7 @@
 id: 2
 title: "node.jsでのdynamodb操作まとめ"
 date: "2023-11-21"
-image: "/images/pic5.jpg"
+image: "/images/aws.png"
 excerpt: "aaaaa"
 ---
 
