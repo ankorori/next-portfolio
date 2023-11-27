@@ -34,3 +34,43 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## blog
+
+```md
+---
+id: 5
+title: "md test"
+date: "2023-11-21"
+image: "/images/terraform.png"
+excerpt: "md test"
+---
+
+# aaa
+
+aaa`aaa`aaa
+
+```js__diff:test.js
+const lineProps = (lineNumber) => {
+  let style = {};
+  if (lang2 === 'diff') {
+-      if (added.includes(lineNumberaaaaa)) {
++      if (added.includes(lineNumber)) {
+          style.display = 'block';
+          style.backgroundColor = 'rgba(0, 0, 255, 0.4)';
+      }
+      if (removed.includes(lineNumber)) {
+          style.display = 'block';
+          style.backgroundColor = 'rgba(255, 0, 0, 0.4)';
+      }
+  }
+  return { style };
+};
+```
+
+note
+
+
+Some *emphasis* and <strong>strong</strong>!
+
+```

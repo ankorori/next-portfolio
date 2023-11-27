@@ -21,13 +21,12 @@ const SingleBlog = async(props) => {
         <>
             <div className="wrapper">
                 <div className="container mx-auto px-8">
-            <div className="container">
+            <div className="container my-5">
                 <Image src={singleDocument.data.image} alt="blog-image" height={500} width={1000} quality={90} priority={true} />
             </div>
                     <div className="markdown">
                         <h1>{singleDocument.data.title}</h1>
                         <p>{singleDocument.data.date}</p>
-                        <boder></boder>
                         <ReactMarkdown
                             children={singleDocument.content}
                             components={{ code: codeBlock }}

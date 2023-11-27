@@ -14,9 +14,7 @@ node.jsでのdynamodb操作操作をする機会があったため、各種操�
 
 ## 公式サイト
 
-https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/clients/client-dynamodb/
-
-https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dynamodb.html
+- [AWS SDK for JavaScript v3 | DynamoDBClient](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/client/dynamodb/)
 
 ## 想定するDynamoDBスキーマ
 
@@ -32,6 +30,8 @@ https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/modules/_aws_sdk_lib_dyna
 DynamoDBClientのみで頑張って書いても大丈夫ですが型定義など書かないといけないのでめんどくさいです。
 DocumentClientを使うとスッキリかけます。
 詳しくは公式サイトを確認してください。
+
+- [AWS SDK for JavaScript v3 | @aws-sdk/lib-dynamodb](https://docs.aws.amazon.com/AWSJavaScriptSDK/v3/latest/Package/-aws-sdk-lib-dynamodb/)
 
 ```javascript
 import { DynamoDBDocumentClient, QueryCommand } from "@aws-sdk/lib-dynamodb";
@@ -68,7 +68,7 @@ DynamoDBは検索条件がそこまで柔軟ではなく、テーブル設計時
 パーティションキーとソートキーどちらも設定されている場合はKeyにどちらの項目も必須です。
 パーティションキーのみ設定されているテーブルの場合は、パーティションキーは必須です。
 
-```JavaScript
+```javascript
 const dynamo_data = await dynamo.send(
     new GetCommand({
         TableName: "tableName",
@@ -86,7 +86,7 @@ const dynamo_data = await dynamo.send(
 パーティションキーとソートキーが設定されているテーブルの場合パーティションキーは必須項目になります。
 呼び出しあたりのデータサイズ制限があり、1MBまでしか転送できません。
 
-```JavaScript
+```javascript
 const user_data = await dynamo.send(
     new QueryCommand({
         TableName: "tableName",
@@ -116,7 +116,7 @@ DynamoDBでは一度に取得できるデータ量が決まっているため、
 QueryCommandなどで取得できない場合に使う
 sdk v2では もうちょっと冗長な書き方しかできなかった模様
 
-```JavaScript
+```javascript
 
 const marshallOptions = {
     // Whether to automatically convert empty strings, blobs, and sets to `null`.
@@ -159,7 +159,7 @@ console.log(items);
 1回で最大25件まで処理できます。
 書き込むすべての項目の合計サイズが 16MBを超えてはいけません。
 
-```JavaScript
+```javascript
 await dynamo.send(
     new BatchWriteCommand({
         RequestItems: {
@@ -187,11 +187,12 @@ await dynamo.send(
 );
 ```
 ### TransactWriteCommand
+
 トランザクションで複数のItemの追加/更新/削除を行う際に使用します。
 1回で最大100件まで処理できます。
 トランザクションには、4MBを超えるデータを含めることはできません。
 
-```JavaScript
+```javascript
 await dynamo.send(
     new TransactWriteCommand({
         TransactItems: [
@@ -237,9 +238,10 @@ await dynamo.send(
 
 上書き。元の値がない場合は追加になるので注意
 UpdateExpressionのオプションが色々あるので、試してみると面白いです。
-https://dev.classmethod.jp/articles/dynamodb-update-expression-actions/
 
-```JavaScript
+- [DynamoDBでデータを更新する際に使うUpdateExpressionについて一通りまとめてみた](https://dev.classmethod.jp/articles/dynamodb-update-expression-actions/)
+
+```javascript
 await dynamo.send(
     new UpdateCommand({
         TableName: "tableName",
@@ -261,7 +263,7 @@ await dynamo.send(
 PutCommandは、アイテムの完全な上書きを行うため、使用する前に必ず存在確認を行う必要があります。一方、UpdateCommandは、条件式を使用して更新を制御することができるため、既存のアイテムの一部だけを更新する場合に便利です。
 パーティションキーとソートキーが設定されているテーブルの場合パーティションキーは必須項目になります。
 
-```JavaScript
+```javascript
 await dynamo.send(
     new PutCommand({
         TableName: "tableName",
@@ -278,7 +280,7 @@ await dynamo.send(
 
 削除コマンド。削除時に対象のItemがない場合もエラーにならない。
 
-```JavaScript
+```javascript
 await dynamo.send(
     new DeleteCommand({
         TableName: "tableName",

@@ -26,7 +26,7 @@ body {
 
 /* Headers */
 .markdown h1 {
-  @apply text-2xl
+  @apply text-2xl font-semibold
 }
 .markdown h2 {
   @apply text-xl my-7 underline underline-offset-8;
@@ -54,7 +54,7 @@ body {
 
 /* Links */
 .markdown a {
-  @apply text-blue-600;
+  @apply text-blue-600 after:content-['_↗'];
 }
 .markdown a:hover {
   @apply underline;
@@ -62,7 +62,7 @@ body {
 
 /* Paragraph */
 .markdown p {
-  @apply mb-4 leading-8 md:leading-10 text-justify;
+  @apply mb-4 leading-8 md:leading-10;
 }
 
 /* Lists */
@@ -96,8 +96,8 @@ body {
 }
 
 /* Code */
-.markdown :not(pre) > code {
-  @apply bg-indigo-50 p-1 font-semibold text-gray-600 rounded-lg ;
+.markdown p code {
+  @apply bg-indigo-50 p-1 font-semibold text-gray-950 rounded-lg;
 }
 
 /* Pre */

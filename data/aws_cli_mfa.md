@@ -1,5 +1,5 @@
 ---
-id: 3
+id: 1
 title: "aws cliでMFA認証突破する方法"
 date: "2023-11-21"
 image: "/images/aws.png"
@@ -46,9 +46,11 @@ aws sts get-session-token --serial-number arn:aws:iam::<awsアカウントの番
 ## 一時的な認証情報の使用方法
 
 ### 環境変数にセットして使用する
+
 上記で返ってきた値を環境変数にセットして使用します。
 
 Linux:
+
 ```bash
 export AWS_ACCESS_KEY_ID=<取得したSecretAccessKeyId>
 export AWS_SECRET_ACCESS_KEY=<取得したSecretAccessKey>

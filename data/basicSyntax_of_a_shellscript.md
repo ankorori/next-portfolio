@@ -1,5 +1,5 @@
 ---
-id: 6
+id: 3
 title: "シェルスクリプトの基本構文とかをまとめてみた"
 date: "2023-11-21"
 image: "/images/linux.png"
@@ -17,7 +17,7 @@ excerpt: "シェルスクリプトの基本構文などをまとめました"
 コーディングにあたって便利な拡張機能の紹介です
 下記をインストールすると静的コード解析やフォーマット調整など出来ます
 
-https://marketplace.visualstudio.com/items?itemName=pinage404.bash-extension-pack
+- [Bash VS Code Extension Pack](https://marketplace.visualstudio.com/items?itemName=pinage404.bash-extension-pack)
 
 ## 基本構文
 
@@ -54,7 +54,8 @@ HELLO
 変数と同様に変数名＝値で宣言
 カッコの中に値を入れます
 値は半角スペースで区切って書きます
-[Bashの配列の使い方: 要素の参照、追加、削除。要素数の取得など](https://yu-nix.com/archives/bash-array/)
+
+- [Bashの配列の使い方: 要素の参照、追加、削除。要素数の取得など](https://yu-nix.com/archives/bash-array/)
 
 ```bash
 #!/bin/bash
@@ -76,7 +77,7 @@ $ bash test.sh
 ### 連想配列
 
 
-[declare使ってBashで配列と連想配列](https://future-architect.github.io/articles/20210401/)
+- [declare使ってBashで配列と連想配列](https://future-architect.github.io/articles/20210401/)
 
 ```bash
 #!/bin/bash
@@ -129,7 +130,7 @@ $ bash test.sh 1
 
 ### if文
 
-[【bash】if else文の使い方【初心者向け】](https://lanchesters.site/bash-if-else/)
+- [【bash】if else文の使い方【初心者向け】](https://lanchesters.site/bash-if-else/)
 
 ```bash
 #!/bin/bash
@@ -149,8 +150,7 @@ OK
 
 ### ループ
 
-[Bashのfor文の書き方: ループ文で繰り返し処理を行う
-](https://yu-nix.com/archives/bash-for/)
+[Bashのfor文の書き方: ループ文で繰り返し処理を行う](https://yu-nix.com/archives/bash-for/)
 
 ```bash
 #!/bin/bash
@@ -173,10 +173,11 @@ banana
 
 shellscriptはエラーが起きてもデフォルトではそのまま後続処理が走ってしまいます
 ここが自分は一番びっくりでした…
+
 対策は下記のように`set -eu`という宣言を最初にします
 この宣言をしておけばエラーがあった際そこで処理が止まります
 
-[シェルスクリプトを書くときはset -euしておく](https://qiita.com/youcune/items/fcfb4ad3d7c1edf9dc96)
+- [シェルスクリプトを書くときはset -euしておく](https://qiita.com/youcune/items/fcfb4ad3d7c1edf9dc96)
 
 ```bash
 #!/bin/bash
@@ -199,8 +200,7 @@ echo "[$(date +"%Y-%m-%d %H:%M:%S")][INFO]: ############# invoke start #########
 
 ### スクリプトの実行パスを取得する
 
-[[bash] 実行スクリプトの絶対パスの取得
-](https://qiita.com/koara-local/items/2d67c0964188bba39e29)
+[[bash] 実行スクリプトの絶対パスの取得](https://qiita.com/koara-local/items/2d67c0964188bba39e29)
 
 ```bash
 #!/bin/bash
@@ -210,7 +210,7 @@ CURRENT_PATH=$(cd $(dirname $0); pwd)
 
 ### 実行前に実行しても良いか確認する
 
-[BASHシェルスクリプトで「キー入力待ち」プロンプトを実装する](https://dev.classmethod.jp/articles/waiting-for-your-input-with-read-command/)
+- [BASHシェルスクリプトで「キー入力待ち」プロンプトを実装する](https://dev.classmethod.jp/articles/waiting-for-your-input-with-read-command/)
 
 ```bash
 #!/bin/bash
@@ -237,7 +237,7 @@ temp_file=$(mktemp)
 
 ### 他のファイルを読み込みたい
 
-[【shellscript】外部ファイルから変数を取得する](https://qiita.com/aki_number16/items/155d0dff85917b9a829b)
+- [【shellscript】外部ファイルから変数を取得する](https://qiita.com/aki_number16/items/155d0dff85917b9a829b)
 
 ```bash
 #!/bin/bash
