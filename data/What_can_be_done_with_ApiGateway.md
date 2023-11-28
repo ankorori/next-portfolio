@@ -1,0 +1,60 @@
+---
+id: 6
+title: "ApiGatewayでできることをまとめました"
+date: "2023-11-28"
+image: "/images/aws.png"
+excerpt: "What can be done with ApiGateway"
+---
+
+AWS Certified Developer - Associateを勉強中にAPI Gatewayめっちゃ多機能やん…と思い始めたので出来ることをまとめてみます。
+
+公式ドキュメント
+- [Amazon API Gateway Documentation](https://docs.aws.amazon.com/apigateway/index.html)
+
+## API Gateway＋lambdaでサーバーレス環境作成
+
+まずは誰もが通るであろう鉄板構成です
+REST APIなどすぐ作れて便利です
+
+- [API Gatewayとlambdaを使ってみる](https://qiita.com/miyuki_samitani/items/f01f1bd49334f97fe84c)
+
+## API Gateway＋AWSサービス
+
+lambdaと連携させなくても、直接AWSサービスを呼ぶことも可能
+
+- [API ゲートウェイを使用して Amazon S3 に画像や PDF ファイルをアップロードするには、どうすればよいですか?](https://repost.aws/ja/knowledge-center/api-gateway-upload-image-s3)
+- [API Gateway からDynamoDBを直接操作してみた](https://zenn.dev/amarelo_n24/articles/ab083b0358e902)
+
+## 認証
+
+リソースポリシーでの制限やCognitoと連携させた認証、IAM認証、mTLS認証など色々できます。
+
+- [API Gateway リソースポリシーを使用して API へのアクセスを制御する](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-resource-policies.html)
+- [Cognitoを使ってAPI Gatewayのアクセス認証をしてみた](https://qiita.com/ist-m-k/items/f956e3005b2e83272cb2)
+- [API GatewayでIAM認証してみた](https://qiita.com/ita-k/items/5d6e8ceaf3f0a970b594)
+- [REST API の相互 TLS 認証の設定](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/rest-api-mutual-tls.html)
+
+## クォーター制御
+
+APIキーというものを発行してちょっとした認証とクォータ、レート、バーストを設定できます。
+
+- [API GatewayのAPIキーと使用量プランについて調べてみた](https://dev.classmethod.jp/articles/try-api-gateway-usage-plan/)
+
+## WebSocket API
+
+お恥ずかしながら自分は全然詳しくないですが、WebSocket APIもつくれます！
+
+- [WebSocket API の操作](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/apigateway-websocket-api.html)
+- [API Gateway で WebSocket を利用したAPI作成](https://qiita.com/minsu/items/fcae56cd175d1d584709)
+
+## デプロイ方法
+
+Canary リリースデプロイがサポートされています
+
+- [API Gateway の Canary リリースデプロイの設定](https://docs.aws.amazon.com/ja_jp/apigateway/latest/developerguide/canary-release.html)
+- [【新機能】 Amazon API Gateway が Canary Release Deployments (新しいバージョンへの部分的な振り分け) に対応しました #reinvent](https://dev.classmethod.jp/articles/reinvent2017-api-deploy-canary-release/)
+
+## 最後に
+
+ざっくりですが色々出来ることをまとめてみました。
+まだまだ機能はてんこ盛りなので深掘りしていこうと思います！
