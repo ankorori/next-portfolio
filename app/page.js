@@ -12,9 +12,9 @@ export default async() => {
     return (
         <>
             <div className="container mx-auto px-8">
-                <h1>インフラ〜バックエンドあたりの技術についてメモしています</h1>
                 <div className="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-                    <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
+                <h1>インフラ〜バックエンドあたりの技術についてメモしています</h1>
+                    <div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10 mt-10">
                         { limitedBlogs.map((blog, index) =>
                             <div key={index} className='shadow-2xl transition ease-in-out hover:-translate-y-1 hover:scale-110 duration-600'>
                             <Link className="group rounded-xl overflow-hidden dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" href={`/blog/${blog.slug}`}>
