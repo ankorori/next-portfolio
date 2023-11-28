@@ -143,7 +143,7 @@ else
 fi
 ```
 
-```
+```bash
 $ bash test.sh
 OK
 ```

@@ -3,7 +3,6 @@ import { Prism as SyntaxHighlighter } from "react-syntax-highlighter"
 import { darcula } from 'react-syntax-highlighter/dist/esm/styles/prism'
 
 const CodeBlock = ({ inline, className, children }) => {
-    console.log(inline,className,children);
     if (!className) {
         return <code className={className}>{children}</code>;
     }

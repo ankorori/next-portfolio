@@ -26,29 +26,33 @@ body {
 
 /* Headers */
 .markdown h1 {
-  @apply text-2xl font-semibold
+  @apply text-3xl font-semibold
 }
 .markdown h2 {
+  @apply text-2xl my-7 underline underline-offset-8;
+}
+.markdown h3 {
   @apply text-xl my-7 underline underline-offset-8;
 }
-.markdown h3,
 .markdown h4,
 .markdown h5,
 .markdown h6 {
-  @apply text-lg my-3;
+  @apply text-lg my-3 underline underline-offset-8;
 }
 @screen sm {
   .markdown h1 {
-    @apply text-2xl
+    @apply text-3xl font-semibold
   }
   .markdown h2 {
-    @apply text-xl underline underline-offset-8;
+    @apply text-2xl underline underline-offset-8;
   }
-  .markdown h3,
+  .markdown h3 {
+    @apply text-xl my-7 underline underline-offset-8;
+  }
   .markdown h4,
   .markdown h5,
   .markdown h6 {
-    @apply text-xl;
+    @apply text-lg underline underline-offset-8;
   }
 }
 

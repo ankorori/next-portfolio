@@ -1,28 +1,20 @@
 import Image from 'next/image'
-import fs from "fs"       
-import path from "path" 
-import matter from "gray-matter"
 import ReactMarkdown from "react-markdown"
 import codeBlock from "../../components/codeBlock"
-
-async function getSingleBlog(context) {
-    const { slug } = context.params
-    const data = await import(`../../../data/${slug}.md`)
-    const singleDocument = matter(data.default)
-
-    return {
-        singleDocument: singleDocument
-    }
-}
+import PrevNext from '@/app/components/prevNext'
+import { getAllBlogs, getSingleBlog } from "../../utils/mdQueries"
 
 const SingleBlog = async(props) => {
     const { singleDocument } = await getSingleBlog(props)
+    const { blogs } = await getAllBlogs()
+    const prev = blogs.filter(blog => blog.frontmatter.id === singleDocument.data.id - 1)
+    const next = blogs.filter(blog => blog.frontmatter.id === singleDocument.data.id + 1)
     return (
         <>
             <div className="wrapper">
                 <div className="container mx-auto px-8">
             <div className="container my-5">
-                <Image src={singleDocument.data.image} alt="blog-image" height={500} width={1000} quality={90} priority={true} />
+                <Image src={singleDocument.data.image} alt="blog-image" height={500} width={500} quality={90} priority={true} />
             </div>
                     <div className="markdown">
                         <h1>{singleDocument.data.title}</h1>
@@ -32,6 +24,7 @@ const SingleBlog = async(props) => {
                             components={{ code: codeBlock }}
                         />
                     </div>
+                    <PrevNext prev={prev} next={next} />
                 </div>
             </div>
         </>
@@ -41,24 +34,6 @@ const SingleBlog = async(props) => {
 export default SingleBlog
 
 export async function generateStaticParams() {
-    async function getAllBlogs() {  
-        const files = fs.readdirSync(path.join("data"))
-        const blogs = files.map((fileName) => {
-            const slug = fileName.replace(".md", "")
-            const fileData = fs.readFileSync(
-                path.join("data", fileName),
-                "utf-8"
-            )
-            const { data } = matter(fileData) 
-            return {
-                frontmatter: data,
-                slug: slug, 
-            }
-        })
-        return{
-            blogs: blogs 
-        }
-    }
     const { blogs } = await getAllBlogs()
     const paths = blogs.map((blog) => `/${blog.slug}`)
     return paths
