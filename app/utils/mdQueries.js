@@ -7,7 +7,7 @@ export const blogsPerPage = 6
 export async function getAllBlogs() {
     const files = fs.readdirSync(path.join("data"))
     const blogs = files.map((fileName) => {
-        const slug = fileName.replace(".md", "")
+        const slug = fileName.replace(".md", "").replace(/[0-9]{1,3}./, "")
         const fileData = fs.readFileSync(
             path.join("data", fileName),
             "utf-8"
@@ -16,6 +16,7 @@ export async function getAllBlogs() {
         return {
             frontmatter: data,
             slug: slug,
+            fileName: fileName,
         }
     })
 
@@ -31,9 +32,10 @@ export async function getAllBlogs() {
     }
 }
 
-export async function getSingleBlog(context) {
+export async function getSingleBlog(context, blogs) {
     const { slug } = context.params
-    const data = await import(`../../data/${slug}.md`)
+    const blog = blogs.find((v) => v.slug === slug);
+    const data = await import(`../../data/${blog.fileName}`)
     const singleDocument = matter(data.default)
 
     return {
