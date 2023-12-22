@@ -1,8 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import fs from "fs"       
-import path from "path" 
-import matter from "gray-matter"
 import Pagination from "./components/pagination"
 import { getAllBlogs, blogsPerPage } from "./utils/mdQueries"
 
