@@ -1,3 +1,5 @@
+import React from 'react'
+
 const NotFound = () => {
     return <>
         <div className="container mx-auto px-8">
