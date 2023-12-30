@@ -45,3 +45,11 @@ const PaginationPage = async(props) => {
 }
 
 export default PaginationPage
+
+export async function generateStaticParams() {
+    const { numberPages } = await getAllBlogs()
+
+    let paths = []
+    Array.from({ length: numberPages }).map((_, index) => paths.push(`/blog/page/${index + 2}`))
+    return paths
+}
