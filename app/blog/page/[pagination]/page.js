@@ -4,9 +4,9 @@ import Pagination from "../../../components/pagination"
 import { getAllBlogs, blogsPerPage } from "../../../utils/mdQueries"
 
 const PaginationPage = async(props) => {
-    const { blogs, numberPages } = await getAllBlogs()
-    const currentPage = props.params.pagination
-    const limitedBlogs = blogs.slice((currentPage -1) * blogsPerPage, currentPage * blogsPerPage)
+    const { blogs, numberPages, tags } = await getAllBlogs();
+    const currentPage = props.params.pagination;
+    const limitedBlogs = blogs.slice((currentPage -1) * blogsPerPage, currentPage * blogsPerPage);
     return (
         <>
             <div className="container mx-auto px-8">
